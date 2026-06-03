@@ -9,7 +9,7 @@ Computador liga
 ↓
 Firmware: BIOS/UEFI ➔  Ele é o software que gerencia o hardware. Quando o computador é ligado ele testa a memória RAM e o processador para ver se estão funcionando e logo em seguida procura o SO (Kernel) no HD ou SSD.
 ↓
-Bootloader: GRUB ➔  Ele serve para encontrar o linux no disco e inicializar ele.
+Bootloader: GRUB ➔  Ele serve para encontrar o SO no disco e inicializar ele.
 ↓
 Kernel: Linux ➔  É o cerebro do computador. ELe gerencia e liga os programas(software) e hardware.
 ↓
