@@ -13,11 +13,11 @@ Bootloader: GRUB ➔  Ele serve para encontrar o SO no disco e inicializar ele.
 ↓
 Kernel: Linux ➔  É o cerebro do computador. ELe gerencia e liga os programas(software) e hardware.
 ↓
-initramfs ➔ Monta os rootfs real que é a pasta mãe que contém absolutamente todos os arquivos, pastas, programas e configurações do Linux.
+initramfs ➔  Monta os rootfs real que é a pasta mãe que contém absolutamente todos os arquivos, pastas, programas e configurações do Linux.
 ↓
-Init (systemd) inicia ➔
+Init (systemd) inicia ➔  Ele inicializa o SO e monta as pastas e discos para o uso.
 ↓
-Login shell ➔
+Login shell ➔ 
 
 ```
 Computador liga
