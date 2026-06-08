@@ -1,5 +1,4 @@
-#  DISTRO_DESIGN.md 
-Está é a documentação do processo para fazer minha distro 
+# Documentação do processo para fazer a distro 
 
 ## CONCEITOS IMPORTANTES 
 ### Inicialização do Linux (Boot)
