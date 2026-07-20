@@ -2,6 +2,33 @@
 
 ## COMANDOS RODADOS
 ## PRIMEIRA FORMA - MAIS SIMPLES 
+
+Cria um diretório para sua distro e entra nele: 
+```text
+mkdir Distro; cd Distro
+```
+Criação do arquio raiz da distribuição( Diretório principal - /):
+```text
+mkdir rootfs
+```
+Agora se o seus Downloads vao para a pasta Downloads do seu computador, será necessário mover o arquivo de instalação do kernel para a pasta Distro.
+Para isso irei criar uma variável na qual leva para a pasta da minha distribução.
+Dentro da pasta irei digitar o comando que mostra o caminho para o diretório atual: 
+```text
+pwd
+```
+Saida: `/home/ana/Distro` 
+
+Criação da variável: 
+```text
+DISTRO=/home/ana/Distro
+```
+Mostra o que tem dentro da variável:
+```text
+echo $DISTRO
+```
+Agora pode seguir com a instalação.
+
 Instala as ferramentas necessárias para compilar o Kernel do Linux, criar uma imagem de sistema operacional customizada e configurar um ambiente de emulação e boot):
 ```text
 sudo apt update && sudo apt install -y \
@@ -22,7 +49,7 @@ sudo apt update && sudo apt install -y \
     squashfs-tools \
     qemu-system-x86
 ```
-COMPILAR O KERNEL: 
+SIGNIFICADO DOS COMANDOS PARA COMPILAR O KERNEL: 
 - `build-essential/` : instala o gcc (compilador de C), g++ (compilador de C++) e o make.
 - `libncurses-dev/` : instala o o comando make menuconfig.
 - `bison & flex/` : geradores de analisadores sintáticos. O Kernel precisa deles para entender a estrutura dos seus próprios arquivos de configuração durante a montagem.
@@ -42,13 +69,68 @@ EMPACOTAR O KERNEL:
 
 Baixa os arquivos diretamente da internet:
 ```text
-sudo wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.60.tar.xz
+sudo wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.38.tar.xz
 ```
+Ou voçê pode entrar diretamente no site kernel.org e baixar o arquivo 6.18.38 por lá, clicando em tarball (baixa o arquivo .tar)
+### NO DIRETÓRIO DOCUMENTS 
+Pega o arquivo baixado e copia e cola na pasta da distro:
+```text
+cp linux-6.18.38.tar.xz $DISTRO
+```
+### NO DIRETÓRIO DISTRO
 Comando para extrair o arquivo baixado:
 ```text
 sudo tar -xvf linux-6.1.60.tar.xz
 ```
-Mudar para o diretório extraido:
-cd linux-6.1.60
+- `-x` (Extract): Diz ao programa para descompactar o arquivo.
+- `-v`(Verbose): Modo "falado". Mostra na tela a lista de arquivos sendo extraídos em tempo real.
+- `-f`(File): Indica que voçê vai especificar o nome do arquivo logo em seguida.
 
+Mudar para o diretório extraido:
+```text
+cd linux-6.1.60
+```
+
+Comando para limpar o código fonte do Kernel, fazendo ele voltal ao estado de "fabrica":
+```text
+make mrproper 
+```
+Mostra todos os arquivos da pasta(até mesmo os escondidos):
+```text
+ls -a
+```
+
+Cria o arquivo de configuração padrão do kernel para a arquitetura do seus sistema:
+```text
+make defconfig 
+```
+
+Cria uma interface para personalizar de maneira mais facil os recursos do kernel:
+```text
+make menuconfig
+```
+Com a interface aberta, coloque como y (built-in) no menuconfig:
+
+- Opção: Caminho no menuconfig
+- `Suporte a ext4`:	File systems > Ext4.
+- `Suporte a SquashFS`: File systems > Overlay filesystem.
+- `OverlayFS`: File systems > Overlay filesystem.
+- `Suporte a disco SATA/AHCI`: Device Drivers > Serial ATA/ATAPI > AHCI.
+- `Suporte a NVMe`:	Device Drivers > NVM Express block device.
+- `Suporte a USB Storage`: Device Drivers > USB > USB Mass Storage.
+- `Suporte a ISO 9660`:	File systems > ISO 9660.
+- `Suporte a FAT/VFAT`: File systems > DOS/FAT/VFAT .
+- `Suporte a loop device`: Device Drivers > Block devices > Loopback.
+- `Suporte a tmpfs`: File systems > Pseudo filesystems > tmpfs.
+Salve e saia.
+
+Reduz o tamanho e o tempo de compilação do kernel:
+```text
+make localmodconfig
+```
+
+Compila o Kernel: 
+```text
+make -j$(nproc)
+```
 
