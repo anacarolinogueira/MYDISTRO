@@ -1,7 +1,7 @@
 
 
 ## COMANDOS RODADOS
-## PRIMEIRA FORMA - MAIS SIMPLES 
+### COMPILAÇÃO KERNEL  
 
 Cria um diretório para sua distro e entra nele: 
 ```text
@@ -133,4 +133,5 @@ Compila o Kernel:
 ```text
 make -j$(nproc)
 ```
+### SISTEMA DE ARQUIVOS RAIZ
 
