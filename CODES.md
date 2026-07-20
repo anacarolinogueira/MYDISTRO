@@ -71,7 +71,7 @@ Baixa os arquivos diretamente da internet:
 ```text
 sudo wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.38.tar.xz
 ```
-Ou voçê pode entrar diretamente no site kernel.org e baixar o arquivo 6.18.38 por lá, clicando em tarball (baixa o arquivo .tar)
+Ou voçê pode entrar diretamente no site kernel.org e baixar o arquivo 6.18.38 por lá, clicando em tarball (baixa o arquivo .tar).
 ### NO DIRETÓRIO DOCUMENTS 
 Pega o arquivo baixado e copia e cola na pasta da distro:
 ```text
@@ -135,3 +135,39 @@ make -j$(nproc)
 ```
 ### SISTEMA DE ARQUIVOS RAIZ
 
+Baixa os arquivos diretamente da internet:
+```text
+sudo wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
+```
+Ou voçê pode entrar diretamente no site busybox.net e baixar o arquivo busybox-1.36.0.tar.bz2 por lá.
+
+Vai para a pasta Downloads:
+```text
+cd Downloads
+```
+Comando para extrair o arquivo baixado:
+```text
+sudo tar -xvf busybox-1.36.0.tar.bz2
+```
+Mudar para o diretório extraido:
+```text
+cd busybox-1.36.0
+```
+Cria o arquivo de configuração padrão do busybox para a arquitetura do seus sistema:
+```text
+make defconfig 
+```
+DA PRA FAZERA COMPILAÇÃO DE DUAS FORMAS 
+COM O MENU CONFIG:
+Cria uma interface para personalizar de maneira mais facil os recursos do busybox:
+```text
+make menuconfig
+```
+Com a interface aberta, coloque como y (built-in) no menuconfig:
+- Settings > Build static binary = YES
+Salve e saia.
+
+
+
+
+SEM O MENU CONFIG:
