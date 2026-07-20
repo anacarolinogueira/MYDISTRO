@@ -1,10 +1,26 @@
 
 
 ## COMANDOS RODADOS
-
+## PRIMEIRA FORMA - MAIS SIMPLES 
 Instala as ferramentas necessárias para compilar o Kernel do Linux, criar uma imagem de sistema operacional customizada e configurar um ambiente de emulação e boot):
 ```text
-sudo apt update && sudo apt install -y gebuild-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio wget xorriso grub-pc-bin grub-efi-amd64-bin grub-common mtools squashfs-tools qemu-system-x86 tar xz-utils
+sudo apt update && sudo apt install -y \
+    build-essential \
+    libncurses-dev \
+    bison \
+    flex \
+    libssl-dev \
+    libelf-dev \
+    bc \
+    cpio \
+    wget \
+    xorriso \
+    grub-pc-bin \
+    grub-efi-amd64-bin \
+    grub-common \
+    mtools \
+    squashfs-tools \
+    qemu-system-x86
 ```
 COMPILAR O KERNEL: 
 - `build-essential/` : instala o gcc (compilador de C), g++ (compilador de C++) e o make.
