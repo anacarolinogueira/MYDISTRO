@@ -167,6 +167,10 @@ Com a interface aberta, coloque como y (built-in) no menuconfig:
 - Settings > Build static binary = YES
 Salve e saia.
 
+Cria as pastas 
+```text
+mkdir initramfs; cd initramfs; mdkir bin proc sys dev mnt
+```
 
 
 
