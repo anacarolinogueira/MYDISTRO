@@ -172,6 +172,143 @@ Cria as pastas
 mkdir initramfs; cd initramfs; mdkir bin proc sys dev mnt
 ```
 
-
-
 SEM O MENU CONFIG:
+Pra verificar que o busybox esta no modo estático:
+```text
+cat .config | grep "STATIC"
+```
+
+Saída deve ser:
+```text
+# CONFIG_STATIC is not set
+# CONFIG_FEATURE_LIBBUSYBOX_STATIC is not set
+CONFIG_STATIC_LIBGCC=y
+```
+
+Então, é necessário alterar o CONFIG_STATIC dento do arquivo .config
+```text
+sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/' .config
+```
+
+Também mude o CONFIG_TC no arquivo .config:
+```text
+sed -i 's/CONFIG_TC=y/# CONFIG_TC is not set/' .config
+```
+
+Instale o musl:
+```text
+sudo apt install -d musl
+```
+
+Faça a compilação:
+```text
+make menuconfig
+```
+
+Compila o busybox:
+```text
+sudo make -j$(nproc)
+```
+
+Para verificar se a compilação foi correta:
+```text
+ls - a
+```
+
+Na saida deve haver uma pasta escrita:
+```text
+busybox
+```
+
+Agora na pasta ~/Downloads/busybox-1.36.0 copie e cole o arquivo busybox na pasta bin:
+```text
+cp busybox ~/distro/rootfs/initramfs/bin/
+```
+
+Vá para pasta bin em initramfs e de permissão para o executável (busybox):
+```text
+chmod +755 busybox
+```
+
+Crie um arquivo scripte acese ele:
+```text
+touch script.sh; vim script.sh
+```
+- `i`: Para entrar no modo edição.
+- `Esq`: Para sair do modo edição.
+- `:w` + `Enter`: Para salvar o arquivo.
+- `:q` + `Enter`: Para sair do editor.
+
+Dentro do arquivo digite: 
+```text
+#!/bin/bash
+
+for programa in $(./busybox --list); do
+        ln -s busybox ./$programa
+done
+```
+
+De permissão ao arquivo script.sh
+```text
+chmod +755 script.sh
+```
+
+Execute o script.sh:
+```text
+./script.sh
+```
+
+Volte para initramfs
+```text
+cd ..
+```
+
+Crie um arquivo init e edite ele:
+```text
+touch init; vim init
+```
+
+Dentro do arquivo init, digite:
+```text
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devtmpfs none /dev
+
+echo "Inicializando a disto..."
+```
+
+Dê permissão para o arquivo init:
+```text
+chmod +755 init
+```
+
+Crie sua variável da pasta ditro:
+```text
+export DISTRO=/home/administrador/distro
+```
+:
+```text
+cd distro 
+```
+
+```text
+cd ..
+```
+```text
+cd ..
+```
+```text
+cd ..
+```
+```text
+cd ..
+```
+```text
+cd ..
+```
+```text
+cd ..
+```
+
