@@ -288,9 +288,9 @@ Crie sua variável da pasta ditro:
 ```text
 export DISTRO=/home/administrador/distro
 ```
-:
+Dentro do busybox rode esse comando 
 ```text
-cd distro 
+make CONFIG_PREFIX=$DISTRO install
 ```
 
 ```text
