@@ -58,3 +58,9 @@ ver o que a minha linux precisa
 talve fazer uma distro linux arduino 
 em questao de cyber 
 vunerabilidade do busybox comadno cat   
+a distribuiçao é um sistema operacional 
+um sistema operacional 
+o kernel eh o nucleo, ele faz o intermendiario entre o hardware e o software 
+- 
+- 
+- 
